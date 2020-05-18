@@ -13,8 +13,8 @@ public class ContactApplication {
         String filename = "src/data/contacts.txt";
         List<String> contacts = new ArrayList<>();
 
-        contacts.add("Rex Sutton 12345678");
-        contacts.add("Ron Palencia 12345679");
+        contacts.add("Rex Sutton | 12345678");
+        contacts.add("Ron Palencia | 12345679");
 
         Path dataDirectory = Paths.get(directory);
         Path contactFilePath = Paths.get(filename);
@@ -24,20 +24,20 @@ public class ContactApplication {
         createFile(contactFilePath);
 
 
-
-        Scanner scanner = new Scanner(System.in);
-        int choice;
-        String output;
-        output = " 1. View contacts.\n 2. Add a contact.\n 3. Search a contact by name.\n 4. Delete an existing contact.\n 5. Exit.\n Enter an option (1, 2, 3, 4 or 5):";
-        System.out.println(output);
-        System.out.println("Choice:");
-        String firstName;
-        String lastName;
-        String phoneNumber;
         boolean keepGoing = true;
+        Scanner scanner = new Scanner(System.in);
 
-
+        while(keepGoing) {
+            int choice;
+            String output;
+            output = " 1. View contacts.\n 2. Add a contact.\n 3. Search a contact by name.\n 4. Delete an existing contact.\n 5. Exit.\n Enter an option (1, 2, 3, 4 or 5):";
+            System.out.println(output);
+            System.out.println("Choice:");
+            String firstName;
+            String lastName;
+            String phoneNumber;
             choice = scanner.nextInt();
+
             if (choice == 1) {
                 readFile(contactFilePath, true);
             } else if (choice == 2) {
@@ -67,9 +67,10 @@ public class ContactApplication {
                 deleteFile(contactFilePath, newContacts);
                 System.out.println("This is your updated list: ");
                 readFile(contactFilePath, true);
-            } else if(choice == 5) {
-
+            } else if (choice == 5) {
+                break;
             }
+        }
 
     }
 
