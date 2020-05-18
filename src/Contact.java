@@ -10,7 +10,7 @@ public class Contact {
     }
 
     public String combineAllProperties() {
-        return firstName + " "  + lastName + " " + "|" + phoneNumber;
+        return firstName + " "  + lastName + " " + "| " + phoneNumber;
     }
 
     public String getFirstName() {
