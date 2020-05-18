@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 public class ContactApplication {
 
@@ -25,6 +26,22 @@ public class ContactApplication {
         createFile(contactFilePath);
 
         writeFile(contactFilePath, contacts);
+
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        String output;
+
+        output = " 1. View contacts.\n 2. Add a contact.\n 3. Search a contact by name.\n 4. Delete an existing contact.\n 5. Exit.\n Enter an option (1, 2, 3, 4 or 5):";
+        System.out.println(output);
+        System.out.println("Choice:");
+        choice = scanner.nextInt();
+
+        if(choice == 1) {
+            readFile(contactFilePath, true);
+        }
+
+
+
 
     }
 
@@ -57,6 +74,24 @@ public class ContactApplication {
                 System.out.println("Problems creating the file");
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static List<String> readFile(Path aFile, boolean print){
+        List<String> lines;
+        try{
+            lines = Files.readAllLines(aFile);
+            if(print == true){
+                for (String line: lines) {
+                    System.out.println(line);
+                }
+                return null;
+            }
+            return lines;
+        } catch (IOException e){
+            System.out.println("Problems reading the file");
+            e.printStackTrace();
+            return null;
         }
     }
 
