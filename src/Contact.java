@@ -1,12 +1,16 @@
 public class Contact {
     String firstName;
     String lastName;
-    long phoneNumber;
+    String phoneNumber;
 
-    public Contact(String firstName, String lastName, long phoneNumber) {
+    public Contact(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String combineAllProperties() {
+        return firstName + " "  + lastName + " " + "|" + phoneNumber;
     }
 
     public String getFirstName() {
@@ -25,11 +29,11 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public long getPhoneNumber() {
+    public String  getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

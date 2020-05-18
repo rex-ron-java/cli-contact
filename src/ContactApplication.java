@@ -14,8 +14,6 @@ public class ContactApplication {
         String directory = "src/data";
         String filename = "src/data/contacts.txt";
         List<String> contacts = new ArrayList<>();
-        .add("")
-        ["Rex Sutton 123", "Ron Pal 124"]
 
         contacts.add("Rex Sutton 12345678");
         contacts.add("Ron Palencia 12345679");
@@ -23,7 +21,6 @@ public class ContactApplication {
         Path dataDirectory = Paths.get(directory);
         Path contactFilePath = Paths.get(filename);
 
-        writeFile(contactFilePath, contacts);
 
         createDir(dataDirectory);
         createFile(contactFilePath);
@@ -39,19 +36,52 @@ public class ContactApplication {
         choice = scanner.nextInt();
         String firstName;
         String lastName;
+        String phoneNumber;
 
         if(choice == 1) {
             readFile(contactFilePath, true);
         } else if(choice == 2) {
             System.out.println("Enter firstName");
+            scanner.nextLine();
             firstName = scanner.nextLine();
+            System.out.println();
             System.out.println("Enter lastName");
             lastName = scanner.nextLine();
+            System.out.println();
+            System.out.println("Phone Number:");
+            phoneNumber = scanner.nextLine();
+            Contact newPerson = new Contact(firstName, lastName, phoneNumber);
+            contacts.add(newPerson.combineAllProperties());
+            writeFile(contactFilePath, contacts);
+            readFile(contactFilePath, true);
+        } else if(choice == 3) {
+            String search;
+            System.out.println("Search by FirstName: ");
+            scanner.nextLine();
+            search = scanner.nextLine();
+            System.out.println(fileContains(search, contactFilePath));
         }
 
+    }
 
+    private static String fileContains(String needle, Path aFile) {
+        List<String> lines = readFile(aFile, false);
+        for ( String line : lines ) {
+            if(line.contains(needle)){
+                return line;
+            }
+        }
+        return "Contact not found.";
+    }
 
-
+    private static String findAndDelete(String needle, Path aFile) {
+        List<String> lines = readFile(aFile, false);
+        for ( String line : lines ) {
+            if(line.contains(needle)){
+                return line;
+            }
+        }
+        return "Contact not found.";
     }
 
     public static void writeFile(Path aFile, List<String> aList){
