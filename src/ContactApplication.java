@@ -14,6 +14,8 @@ public class ContactApplication {
         String directory = "src/data";
         String filename = "src/data/contacts.txt";
         List<String> contacts = new ArrayList<>();
+        .add("")
+        ["Rex Sutton 123", "Ron Pal 124"]
 
         contacts.add("Rex Sutton 12345678");
         contacts.add("Ron Palencia 12345679");
@@ -21,23 +23,30 @@ public class ContactApplication {
         Path dataDirectory = Paths.get(directory);
         Path contactFilePath = Paths.get(filename);
 
+        writeFile(contactFilePath, contacts);
 
         createDir(dataDirectory);
         createFile(contactFilePath);
 
-        writeFile(contactFilePath, contacts);
+
 
         Scanner scanner = new Scanner(System.in);
         int choice;
         String output;
-
         output = " 1. View contacts.\n 2. Add a contact.\n 3. Search a contact by name.\n 4. Delete an existing contact.\n 5. Exit.\n Enter an option (1, 2, 3, 4 or 5):";
         System.out.println(output);
         System.out.println("Choice:");
         choice = scanner.nextInt();
+        String firstName;
+        String lastName;
 
         if(choice == 1) {
             readFile(contactFilePath, true);
+        } else if(choice == 2) {
+            System.out.println("Enter firstName");
+            firstName = scanner.nextLine();
+            System.out.println("Enter lastName");
+            lastName = scanner.nextLine();
         }
 
 
